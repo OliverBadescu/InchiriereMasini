@@ -20,8 +20,8 @@ public class UserView {
     private Scanner scanner;
 
 
-    public UserView(){
-        user=  new User(20, "john_doe", "123456");
+    public UserView(User user){
+        this.user=user;
         this.userService= new UserService();
         this.masinaService = new MasinaService();
         this.inchiriereService = new InchiriereService();
@@ -43,6 +43,10 @@ public class UserView {
         System.out.println("Apasati tasta 6 pentru a adauga o masina in lista");
         System.out.println("Apasati tasta 7 pentru a sterge o masina din lista");
         System.out.println("Apasati tasta 8 pentru a edita o masina din lista");
+
+        System.out.println("\n");
+
+        System.out.println("Apasati tasta 9 pentru a iesi din cont");
 
 
     }
@@ -80,6 +84,9 @@ public class UserView {
                     break;
                 case 8:
                     editareMasina();
+                    break;
+                case 9:
+                    delogare();
                     break;
                 default:
                     System.out.println("Tasta incorecta");
@@ -223,6 +230,11 @@ public class UserView {
 
         }
 
+
+    }
+    private void delogare(){
+
+        LoginView loginView = new LoginView();
 
     }
 }

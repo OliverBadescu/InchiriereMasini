@@ -1,5 +1,7 @@
 package app.User;
 
+import app.Inchiriere.Inchiriere;
+
 import java.util.ArrayList;
 
 
@@ -32,13 +34,45 @@ public class UserService {
 
     }
 
-    public void afisareUser(){
+    public User logare(String username, String parola){
 
         for (int i =0 ; i < users.size(); i++){
-            System.out.println(users.get(i).descriere());
+            if(users.get(i).getUsername().equals(username) && users.get(i).getParola().equals(parola)){
+                return users.get(i);
+            }
+        }
+        return null;
+    }
+
+    private User findUserById(int id){
+        for (int i =0; i < users.size();i++){
+            if(users.get(i).getId() == id){
+                return users.get(i);
+            }
+        }
+        return null;
+    }
+    public int generareId(){
+
+        int id=(int) Math.round(Math.random()*1000+1);
+
+        while (findUserById(id)!=null){
+            id=(int) Math.round(Math.random()*1000+1);
         }
 
+        return id;
     }
+    public boolean inregistrare(User user){
+
+        for (int i =0 ; i < users.size();i++){
+            if(users.get(i).getUsername().equals(user.getUsername())){
+                return false;
+            }
+        }
+        users.add(user);
+        return true;
+    }
+
 
 
 }
